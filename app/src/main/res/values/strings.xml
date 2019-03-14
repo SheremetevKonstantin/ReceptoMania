@@ -15,4 +15,15 @@
     <string name="reg_Confirm">Я принимаю условия</string>
     <string name="reg_UserPermis">пользовательского соглашения</string>
     <string name="reg_BtnRegistration">Зарегистрироваться</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_image">navigation image</string>
+
+    <string name="nav_categories">Категории</string>
+    <string name="nav_favorites">Избранное</string>
+    <string name="nav_search">Поиск</string>
+
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
+
 </resources>
