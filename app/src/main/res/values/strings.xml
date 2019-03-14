@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ReceptoMania</string>
+
+    <string name="login_Autorization">Авторизация</string>
+    <string name="login_Registration">Регистрация</string>
+    <string name="login_BtnLoginName">Почта</string>
+    <string name="login_BtnPassword">Пароль</string>
+    <string name="login_BtnEnter">Войти</string>
+    <string name="login_BtnGuest">Войти как гость</string>
+
+    <string name="reg_Registration">Регистрация</string>
+    <string name="reg_BtnLoginName">Почта</string>
+    <string name="reg_BtnPassword">Пароль</string>
+    <string name="reg_BtnPasswordRepeat">Повторите пароль</string>
+    <string name="reg_Confirm">Я принимаю условия</string>
+    <string name="reg_UserPermis">пользовательского соглашения</string>
+    <string name="reg_BtnRegistration">Зарегистрироваться</string>
+</resources>
