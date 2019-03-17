@@ -1,7 +1,11 @@
 package com.sheremetev.receptomania;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,21 +20,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     public final static String EXTRA_EMAIL_MESSAGE = "email";
     String email;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        email = (String)getIntent().getExtras().get(EXTRA_EMAIL_MESSAGE);
+        if(email != null){
+            if(email.equals("Гость")){
+                setContentView(R.layout.activity_main_guest);
+            }else{
+                setContentView(R.layout.activity_main);
+            }
+        }else{
+            setContentView(R.layout.activity_main_guest);
+        }
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
@@ -45,9 +59,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        email = (String)getIntent().getExtras().get(EXTRA_EMAIL_MESSAGE);
+
 
         TextView nav_headerText = (TextView) findViewById(R.id.nav_title);
+
 
 
         Fragment fragment = new CategoryFragment();
@@ -64,20 +79,63 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         Fragment fragment = null;
         Intent intent = null;
-        switch(id) {
-            case R.id.nav_favorites:
-                fragment = new FavoritesFragment();
-                break;
-            case R.id.nav_search:
-                fragment = new SearchFragment();
-                break;
-            default:
-                fragment = new CategoryFragment();
+        if(email.equals("Гость")){
+            switch(id) {
+                case R.id.nav_login:
+                    intent = new Intent(this, LoginActivity.class);
+                    break;
+                case R.id.nav_favorites:
+                    fragment = new FavoritesFragment();
+                    break;
+                case R.id.nav_search:
+                    fragment = new SearchFragment();
+                    break;
+                default:
+                    fragment = new CategoryFragment();
+            }
+        }else{
+            switch (id){
+                case R.id.nav_favorites:
+                    fragment = new FavoritesFragment();
+                    break;
+                case R.id.nav_search:
+                    fragment = new SearchFragment();
+                    break;
+                case R.id.nav_logout:
+
+                    ContentValues userValues = new ContentValues();
+                    userValues.put("USER_NAME", "user");
+                    userValues.put("ISLOGIN", "0");
+                    UserDatabaseHelper userDatabaseHelper = new UserDatabaseHelper(this);
+                    try{
+                        SQLiteDatabase db = userDatabaseHelper.getWritableDatabase();
+                        db.update("USER",
+                                userValues,
+                                "_id = ?",
+                                new String[]{Integer.toString(0)});
+                        db.close();
+
+
+                    }catch (SQLException e){
+                        Toast toast = Toast.makeText(this,"База данных недоступна",Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                    intent = new Intent(this, LoginActivity.class);
+                    break;
+                default:
+                    fragment = new CategoryFragment();
+
+            }
         }
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, fragment);
-        ft.commit();
+        if(fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        }else{
+            startActivity(intent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

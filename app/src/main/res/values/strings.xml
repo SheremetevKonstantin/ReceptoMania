@@ -22,6 +22,9 @@
     <string name="nav_categories">Категории</string>
     <string name="nav_favorites">Избранное</string>
     <string name="nav_search">Поиск</string>
+    <string name="nav_login">Авторизация</string>
+    <string name="nav_logout">Выйти</string>
+    <string name="nav_profile">Профиль</string>
 
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>

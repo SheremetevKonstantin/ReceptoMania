@@ -1,7 +1,12 @@
 package com.sheremetev.receptomania;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +26,10 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     String Responce = null;
 
+    private SQLiteDatabase db;
+    private Cursor cursor;
+    String isLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +40,30 @@ public class LoginActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+
+        try {
+            UserDatabaseHelper userDatabaseHelper = new UserDatabaseHelper(this);
+            db = userDatabaseHelper.getReadableDatabase();
+            int vers =  db.getVersion();
+
+            cursor = db.query("USER",
+                    new String[] {"_id","USER_NAME","ISLOGIN"},
+                    null,null,null,null,null);
+            if(cursor.moveToFirst()){
+                String userName = cursor.getString(1);
+                isLogin = cursor.getString(2);
+                if(isLogin.equals("1")){
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    intent.putExtra(MainActivity.EXTRA_EMAIL_MESSAGE,userName);
+                    startActivity(intent);
+                }
+            }
+
+
+        }catch (SQLException e){
+            Toast toast = Toast.makeText(this,"База данных недоступна",Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 
@@ -85,6 +118,9 @@ public class LoginActivity extends AppCompatActivity {
                                 if(Responce.equals("!success")){
                                     Toast.makeText(activity,Responce,Toast.LENGTH_LONG).show();
                                 }else{
+
+                                    updateMyDatabase();
+
                                     Intent intent = new Intent(activity,MainActivity.class);
                                     intent.putExtra(MainActivity.EXTRA_EMAIL_MESSAGE,emailText);
                                     startActivity(intent);
@@ -105,5 +141,25 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         intent.putExtra(MainActivity.EXTRA_EMAIL_MESSAGE,"Гость");
         startActivity(intent);
+    }
+
+    public void updateMyDatabase(){
+        ContentValues userValues = new ContentValues();
+        userValues.put("USER_NAME", emailText);
+        userValues.put("ISLOGIN", "1");
+        UserDatabaseHelper userDatabaseHelper = new UserDatabaseHelper(this);
+        try{
+            SQLiteDatabase db = userDatabaseHelper.getWritableDatabase();
+            db.update("USER",
+                    userValues,
+                    "_id = ?",
+                    new String[]{Integer.toString(0)});
+            db.close();
+
+
+        }catch (SQLException e){
+            Toast toast = Toast.makeText(this,"База данных недоступна",Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }
