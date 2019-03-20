@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.add(R.id.content_frame, fragment);
         ft.commit();
 
-
     }
 
     @Override

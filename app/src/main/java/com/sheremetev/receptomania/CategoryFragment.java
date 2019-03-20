@@ -1,12 +1,9 @@
 package com.sheremetev.receptomania;
 
-
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +13,6 @@ import android.widget.Toast;
 
 
 public class CategoryFragment extends Fragment {
-
-
-
-
-
-
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -46,7 +37,7 @@ public class CategoryFragment extends Fragment {
         }
 
 
-        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(categoryNames, categoryImages);
+        final CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(categoryNames, categoryImages);
         categoryRecycler.setAdapter(adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         categoryRecycler.setLayoutManager(layoutManager);
@@ -54,11 +45,23 @@ public class CategoryFragment extends Fragment {
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
 
-                Toast.makeText(getContext(),"dsd",Toast.LENGTH_SHORT).show();
+                String catName = Categories.categories[position].getCatName();
+
+                Fragment fragment = new SubCategoryFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("catName", catName);
+                fragment.setArguments(bundle);
+
+                assert getFragmentManager() != null;
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.add(R.id.content_frame, fragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
+                //Toast.makeText(getContext(),catName,Toast.LENGTH_SHORT).show();
             }
         });
 
-       // return inflater.inflate(R.layout.fragment_category,container,false);
 
         return categoryRecycler;
     }
