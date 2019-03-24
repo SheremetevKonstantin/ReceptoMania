@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="@string/nav_login" />
+        <item
+            android:id="@+id/nav_categories"
+            android:icon="@android:drawable/ic_menu_send"
+            android:title="@string/nav_categories"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@android:drawable/star_on"
+            android:title="@string/nav_favorites" />
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="@string/nav_search" />
+    </group>
+</menu>
