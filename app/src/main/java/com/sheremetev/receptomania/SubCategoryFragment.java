@@ -15,6 +15,7 @@ public class SubCategoryFragment extends Fragment {
 
     String[] subCategoryNames;
     int[] subCategoryImages;
+    String catName;
 
     public SubCategoryFragment() {
         // Required empty public constructor
@@ -28,48 +29,11 @@ public class SubCategoryFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if(bundle != null){
-            String catName = bundle.getString("catName");
+            catName = bundle.getString("catName");
 
+            subCategoryNames = getArrayNames(catName);
+            subCategoryImages = getArrayImages(catName);
 
-            assert catName != null;
-            switch (catName){
-                case "bakery":
-                    subCategoryNames = getArrayNames("bakery");
-                    subCategoryImages = getArrayImages("bakery");
-                    break;
-                case "desserts":
-                    subCategoryNames = getArrayNames("desserts");
-                    subCategoryImages = getArrayImages("desserts");
-                    break;
-                case "drinks":
-                    subCategoryNames = getArrayNames("drinks");
-                    subCategoryImages = getArrayImages("drinks");
-                    break;
-                case "hot":
-                    subCategoryNames = getArrayNames("hot");
-                    subCategoryImages = getArrayImages("hot");
-                    break;
-                case "porridge":
-                    subCategoryNames = getArrayNames("porridge");
-                    subCategoryImages = getArrayImages("porridge");
-                    break;
-                case "salat":
-                    subCategoryNames = getArrayNames("salat");
-                    subCategoryImages = getArrayImages("salat");
-                    break;
-                case "snacks":
-                    subCategoryNames = getArrayNames("snacks");
-                    subCategoryImages = getArrayImages("snacks");
-                    break;
-                case "soup":
-                    subCategoryNames = getArrayNames("soup");
-                    subCategoryImages = getArrayImages("soup");
-                    break;
-                case "souses":
-                    subCategoryNames = getArrayNames("souses");
-                    subCategoryImages = getArrayImages("souses");
-                    break;
-            }
         }
 
         final CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(subCategoryNames, subCategoryImages);
@@ -80,7 +44,14 @@ public class SubCategoryFragment extends Fragment {
         adapter.setListener(new CaptionedImagesAdapter.Listener() {
             public void onClick(int position) {
 
+
+
+                String subCatName = getSubCatName(catName,position);
+
                 Fragment fragment = new RecipesListFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("subCatName", subCatName);
+                fragment.setArguments(bundle);
 
                 assert getFragmentManager() != null;
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -94,6 +65,31 @@ public class SubCategoryFragment extends Fragment {
 
         return subCategoryRecycler;
 
+    }
+
+    public String getSubCatName(String catName,int position) {
+        switch (catName) {
+            case "bakery":
+                return Subcategories.bakery[position].getSubCatName();
+            case "desserts":
+                return Subcategories.desserts[position].getSubCatName();
+            case "drinks":
+                return Subcategories.drinks[position].getSubCatName();
+            case "hot":
+                return Subcategories.hot[position].getSubCatName();
+            case "porridge":
+                return Subcategories.porridge[position].getSubCatName();
+            case "salat":
+                return Subcategories.salat[position].getSubCatName();
+            case "snacks":
+                return Subcategories.snacks[position].getSubCatName();
+            case "soup":
+                return Subcategories.soup[position].getSubCatName();
+            case "souses":
+                return Subcategories.souses[position].getSubCatName();
+            default:
+                return "";
+        }
     }
 
     public String[] getArrayNames(String catName){

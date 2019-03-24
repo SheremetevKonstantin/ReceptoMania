@@ -11,7 +11,7 @@ public class Subcategories {
     public int getImageResourceId() {
         return imageResourceId;
     }
-    public String getCatName(){return subCatName;}
+    public String getSubCatName(){return subCatName;}
 
     private Subcategories(String name, int imageResourceId,String subCatName) {
         this.name = name;
@@ -115,7 +115,7 @@ public class Subcategories {
     };
 
     public static final Subcategories[] soup = {
-            new Subcategories("Супы",R.drawable.soup_others,"souses_others"),
+            new Subcategories("Супы",R.drawable.soup_others,"soup_others"),
             new Subcategories("Борщ",R.drawable.soup_borsch,"soup_borsch"),
             new Subcategories("Гуляш",R.drawable.soup_gulash,"soup_gulash"),
             new Subcategories("Лагман",R.drawable.soup_lagman,"soup_lagman"),
