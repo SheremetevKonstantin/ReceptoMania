@@ -64,9 +64,8 @@ class CaptionedImagesAdapter extends
             TextView textView = (TextView) cardView.findViewById(R.id.info_text);
             textView.setText(captions[position]);
         }
-        catch (Exception ignored){
+        catch (Exception ignored){}
 
-        }
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
