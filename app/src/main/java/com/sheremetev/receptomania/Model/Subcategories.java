@@ -1,4 +1,6 @@
-package com.sheremetev.receptomania;
+package com.sheremetev.receptomania.Model;
+
+import com.sheremetev.receptomania.R;
 
 public class Subcategories {
     private String name;
@@ -20,7 +22,7 @@ public class Subcategories {
     }
 
     public static final Subcategories[] bakery = {
-            new Subcategories("Выпечка",R.drawable.bakery_others,"bakery_others"),
+            new Subcategories("Выпечка", R.drawable.bakery_others,"bakery_others"),
             new Subcategories("Пироги",R.drawable.bakery_pirog,"bakery_pirog"),
             new Subcategories("Лепешки",R.drawable.bakery_lepeshka,"bakery_lepeshka"),
             new Subcategories("Блины",R.drawable.bakery_blini,"bakery_blini"),

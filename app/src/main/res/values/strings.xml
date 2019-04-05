@@ -29,4 +29,8 @@
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
 
+    <string name="detail_recipe_ingredients">Ингридиенты</string>
+    <string name="detail_recipe_cooking">Приготовление</string>
+    <string name="detail_recipe_author">Автор: </string>
+
 </resources>

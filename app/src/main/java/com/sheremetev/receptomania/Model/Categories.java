@@ -1,4 +1,6 @@
-package com.sheremetev.receptomania;
+package com.sheremetev.receptomania.Model;
+
+import com.sheremetev.receptomania.R;
 
 public class Categories {
     private String name;
@@ -6,7 +8,7 @@ public class Categories {
     private String catName;
 
     public static final Categories[] categories = {
-            new Categories("Горячие блюда",R.drawable.category_hot,"hot"),
+            new Categories("Горячие блюда", R.drawable.category_hot,"hot"),
             new Categories("Супы",R.drawable.category_soup,"soup"),
             new Categories("Салаты",R.drawable.category_salat,"salat"),
             new Categories("Напитки",R.drawable.category_drinks,"drinks"),

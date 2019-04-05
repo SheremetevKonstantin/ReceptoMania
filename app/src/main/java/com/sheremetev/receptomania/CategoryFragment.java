@@ -3,13 +3,13 @@ package com.sheremetev.receptomania;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.GridLayoutManager;
-import android.widget.Toast;
+
+import com.sheremetev.receptomania.Model.Categories;
 
 
 public class CategoryFragment extends Fragment {

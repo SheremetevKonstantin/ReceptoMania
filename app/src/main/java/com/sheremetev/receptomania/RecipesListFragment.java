@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.sheremetev.receptomania.Adapter.MyAdapter;
@@ -30,7 +32,7 @@ import org.json.JSONObject;
 
 public class RecipesListFragment extends Fragment {
 
-    String res;
+    String responce;
     int id;
     int number;
     int ListCount = 0;
@@ -38,7 +40,7 @@ public class RecipesListFragment extends Fragment {
     List<Item> items = new ArrayList<>();
     List<Img> img = new ArrayList<>();
     String subCatName;
-
+    Object[][] Array = new Object[0][];
     public RecipesListFragment() {
         // Required empty public constructor
     }
@@ -59,28 +61,29 @@ public class RecipesListFragment extends Fragment {
                 subCatName = bundle.getString("subCatName");
                 postDataParams = new JSONObject();
                 postDataParams.put("subCatName", subCatName);
-                 postDataParamsString = new PostDataStringer().getPostDataString(postDataParams);
+                postDataParamsString = new PostDataStringer().getPostDataString(postDataParams);
 
-                String url = "https://texturrariaone.ru/sher/insert_test2.php";
+                String url = "https://texturrariaone.ru/sher/Take_name_and_img_for_RecipesList.php";
                 SendPostData sendPostData = new SendPostData();
                 sendPostData.execute(url, postDataParamsString);
 
-                res = sendPostData.get();
+                responce = sendPostData.get();
 
-                if(res.equals("Рецептов не найдено")){
-                    Toast.makeText(getContext(),"Рецептов не найдено",Toast.LENGTH_SHORT).show();
-                }else if(res.equals("Плохое интернет соединение")){
-                    Toast.makeText(getContext(),res,Toast.LENGTH_SHORT).show();
+                if(responce.equals("Рецептов не найдено")){
+                    Toast.makeText(getContext(),responce,Toast.LENGTH_SHORT).show();
+                }else if(responce.equals("Плохое интернет соединение")){
+                    Toast.makeText(getContext(),responce,Toast.LENGTH_SHORT).show();
                 }else{
                     JSONObject userJson = null;
-                    Object[][] Array = new Object[0][];
-                    userJson = new JSONObject(res);
+
+                    userJson = new JSONObject(responce);
                     int leng = userJson.length();
                     Array = new Object[leng][3];
                     for(int i = 0; i < leng; i++){
                         JSONObject d = userJson.getJSONObject(String.valueOf(i));
-                        Array[i][0] = d.getString("name");
-                        Array[i][1] = d.getString("img");
+                        Array[i][0] = d.getString("recipes_name");
+                        Array[i][1] = d.getString("recipes_image");
+                        Array[i][2] = d.getInt("recipes_id");
                     }
 
                     if(Array.length < 10){
@@ -166,7 +169,17 @@ public class RecipesListFragment extends Fragment {
         adapter.setListener(new MyAdapter.Listener() {
             @Override
             public void onClick(int position) {
-                Toast.makeText(getContext(),String.valueOf(position),Toast.LENGTH_SHORT).show();
+                Fragment fragment = new DetailRecipesFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("RecipeId", Integer.valueOf(String.valueOf(Array[position][2])));
+                fragment.setArguments(bundle);
+
+                assert getFragmentManager() != null;
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.add(R.id.content_frame, fragment);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
