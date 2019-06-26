@@ -1,6 +1,7 @@
 package com.sheremetev.receptomania;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,9 +12,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.nav_favorites:
                     fragment = new FavoritesFragment();
                     break;
+                case R.id.nav_addRecipe:
+                    fragment = new AddRecipeFragment();
+                    break;
                 case R.id.nav_search:
                     fragment = new SearchFragment();
                     break;
@@ -144,8 +150,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    /*  Выход по кнопке назад
-    @Override
+
+   /* @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         super.onKeyUp(keyCode, event);
@@ -165,6 +171,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }).create().show();
         }
         return false;
-    }
-    */
+    }*/
+
 }

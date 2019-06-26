@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRecipeFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/photo_blue"/>
+
+    <EditText
+        android:id="@+id/addRecipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="@string/add_recipe_name"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:text="Выберите категорию"
+        android:textSize="20sp"
+        android:fontFamily="@font/font3"
+        android:textAlignment="center"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/categoryList">
+        </Spinner>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:text="Выберите подкатегорию"
+        android:textSize="20sp"
+        android:fontFamily="@font/font3"
+        android:textAlignment="center"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/subCategoryList">
+    </Spinner>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:text="Ингридиенты"
+        android:textSize="20sp"
+        android:fontFamily="@font/font3"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical"
+        android:background="@drawable/notebook"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:maxLength="50"
+                android:layout_height="wrap_content"
+                android:tag="0ingedient"
+                android:hint="Ингридиент"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:maxLength="10"
+                android:tag="0count"
+                android:inputType="number"
+                android:hint="кол-во"/>
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:tag="0mera"
+                android:entries="@array/add_recipe_mera_array"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/llMain"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_buttons_style"
+                    android:text="Добавить"
+                    android:id="@+id/btnAddIngredient">
+                </Button>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_buttons_style"
+                    android:text="Удалить"
+                    android:id="@+id/btnDelIngredient">
+                </Button>
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:text="Пошаговый рецепт приготовления"
+                android:textSize="20sp"
+                android:fontFamily="@font/font3"
+                android:textAlignment="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/border_style">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text|textMultiLine"
+                    android:tag="0step"
+                    android:hint="шаг 1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llMain2"
+                android:orientation="vertical">
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_buttons_style"
+                        android:text="Добавить"
+                        android:id="@+id/btnAddStep">
+                    </Button>
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_buttons_style"
+                        android:text="Удалить"
+                        android:id="@+id/btnDelStep">
+                    </Button>
+                </LinearLayout>
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_buttons_style"
+            android:text="Добавить рецепт"
+            android:id="@+id/btnAddRecipe"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

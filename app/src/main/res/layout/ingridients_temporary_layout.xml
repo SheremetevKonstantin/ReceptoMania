@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layer1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/name0"
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:maxLength="50"
+        android:layout_height="wrap_content"
+        android:hint="Ингридиент"/>
+
+    <EditText
+        android:id="@+id/count0"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:maxLength="10"
+        android:layout_height="wrap_content"
+        android:hint="Кол-во"/>
+
+    <Spinner
+        android:id="@+id/mera0"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:entries="@array/add_recipe_mera_array"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
