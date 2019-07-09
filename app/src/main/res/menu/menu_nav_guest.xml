@@ -3,7 +3,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_login"
-            android:icon="@android:drawable/ic_dialog_info"
+            android:icon="@drawable/baseline_people_black_48"
             android:title="@string/nav_login" />
         <item
             android:id="@+id/nav_categories"
@@ -11,12 +11,12 @@
             android:title="@string/nav_categories"
             android:checked="true"/>
         <item
-            android:id="@+id/nav_favorites"
-            android:icon="@android:drawable/star_on"
-            android:title="@string/nav_favorites" />
-        <item
             android:id="@+id/nav_search"
             android:icon="@android:drawable/ic_menu_search"
             android:title="@string/nav_search" />
+        <item
+            android:id="@+id/shutdown"
+            android:icon="@drawable/baseline_power_settings_new_black_48"
+            android:title="@string/shutdown" />
     </group>
 </menu>

@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.GridLayoutManager;
+import android.widget.TextView;
 
 import com.sheremetev.receptomania.Model.Categories;
+import com.sheremetev.receptomania.Model.NullPage;
 
 
 public class CategoryFragment extends Fragment {
@@ -62,8 +64,9 @@ public class CategoryFragment extends Fragment {
             }
         });
 
-
         return categoryRecycler;
     }
+
+
 
 }

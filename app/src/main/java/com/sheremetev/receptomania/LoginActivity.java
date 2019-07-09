@@ -3,6 +3,7 @@ package com.sheremetev.receptomania;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.sheremetev.receptomania.Model.NullPage;
 
 import org.json.JSONObject;
 
@@ -34,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,6 +70,19 @@ public class LoginActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this,"База данных недоступна",Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if(NullPage.email != null){
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            intent.putExtra(MainActivity.EXTRA_EMAIL_MESSAGE,NullPage.email);
+            startActivity(intent);
+        }
+
+
     }
 
 
@@ -117,8 +136,10 @@ public class LoginActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 if(Responce.equals("!success")){
                                     Toast.makeText(activity,Responce,Toast.LENGTH_LONG).show();
-                                }else{
-
+                                }else if(Responce.equals("Плохое интернет соединение")){
+                                    Toast.makeText(activity,Responce,Toast.LENGTH_LONG).show();
+                                }
+                                else{
                                     updateMyDatabase();
 
                                     Intent intent = new Intent(activity,MainActivity.class);
@@ -138,6 +159,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void LoginAsGuest(View view){
+        NullPage.email = "Гость";
         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
         intent.putExtra(MainActivity.EXTRA_EMAIL_MESSAGE,"Гость");
         startActivity(intent);

@@ -2,6 +2,7 @@ package com.sheremetev.receptomania;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,6 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText email;
     EditText password;
     EditText passwordConfirm;
-    CheckBox chkBox;
 
     ProgressBar progressBar;
     String Responce = null;
@@ -34,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,7 +53,6 @@ public class RegistrationActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         passwordConfirm = (EditText) findViewById(R.id.passwordConfirm);
-        chkBox = (CheckBox) findViewById(R.id.chkBox);
 
 
         if(email.getText().toString().equals("") || password.getText().toString().equals("") ||
@@ -60,9 +60,7 @@ public class RegistrationActivity extends AppCompatActivity {
             Toast.makeText(RegistrationActivity.this,"Заполните все поля!",Toast.LENGTH_SHORT).show();
         }else if (!password.getText().toString().equals(passwordConfirm.getText().toString())) {
             Toast.makeText(RegistrationActivity.this, "Вводимые пароли совпадают", Toast.LENGTH_SHORT).show();
-        }else if(!chkBox.isChecked()){
-            Toast.makeText(RegistrationActivity.this,"Примите условия пользовательского соглашения",Toast.LENGTH_SHORT).show();
-        } else {
+        }else{
 
 
             final Activity activity = RegistrationActivity.this;

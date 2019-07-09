@@ -7,6 +7,7 @@ import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -148,15 +149,15 @@ public class DetailRecipesFragment extends Fragment{
                             TableRow.LayoutParams lp;
                             switch (j){
                                 case 0:
-                                    lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.8f);
-                                    lp.weight = 8;
+                                    lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.7f);
+                                    lp.weight = 7;
                                     textView.setText(detailRecipeIngredientsArray[i]);
                                     textView.setLayoutParams(lp);
                                     textView.setTextSize(20);
                                     break;
                                 case 1:
-                                    lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.1f);
-                                    lp.weight = 1;
+                                    lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.2f);
+                                    lp.weight = 2;
                                     textView.setText(detailRecipeIngredientsCountsArray[i]);
                                     textView.setLayoutParams(lp);
                                     textView.setTextSize(20);
@@ -175,7 +176,7 @@ public class DetailRecipesFragment extends Fragment{
 
                     }
 
-                    detailRecipeCooking.setText(String.valueOf(detailRecipeArray[4]));
+                    detailRecipeCooking.setText(Html.fromHtml(String.valueOf(detailRecipeArray[4]).replace(";","<br /><br />")));
                     detailRecipeAuthor.setText(String.valueOf(detailRecipeArray[8]));
 
 

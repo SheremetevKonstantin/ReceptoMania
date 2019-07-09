@@ -50,24 +50,6 @@
             android:hint="@string/reg_BtnPasswordRepeat"
             android:inputType="textPassword" />
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="2"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/chkBox"
-                android:layout_rowSpan="2"/>
-
-            <TextView
-                android:text="@string/reg_Confirm"/>
-            <TextView
-                android:text="@string/reg_UserPermis"
-                android:textColor="@color/colorBlue"/>
-        </GridLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

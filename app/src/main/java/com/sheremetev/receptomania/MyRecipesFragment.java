@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FavoritesFragment extends Fragment {
+public class MyRecipesFragment extends Fragment {
 
     String responce;
     int id;
@@ -44,13 +44,13 @@ public class FavoritesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView categoryRecycler = (RecyclerView)inflater.inflate(
-                R.layout.fragment_favorites, container, false);
+                R.layout.fragment_my_recipes, container, false);
         try{
             user = NullPage.email;
             postDataParams = new JSONObject();
             postDataParams.put("user", user);
             postDataParamsString = new PostDataStringer().getPostDataString(postDataParams);
-            String url = "https://texturrariaone.ru/sher/Take_name_and_img_for_RecipesList_Favorite.php";
+            String url = "https://texturrariaone.ru/sher/Take_name_and_img_for_RecipesList_myRecipes.php";
             SendPostData sendPostData = new SendPostData();
             sendPostData.execute(url, postDataParamsString);
             responce = sendPostData.get();
@@ -166,8 +166,6 @@ public class FavoritesFragment extends Fragment {
                 ft.commit();
             }
         });
-
-
 
         return categoryRecycler;
     }

@@ -22,6 +22,7 @@
     <string name="nav_categories">Категории</string>
     <string name="nav_favorites">Избранное</string>
     <string name="nav_addRecipe">Добавить свой рецепт</string>
+    <string name="nav_myRecipes">Мои рецепты</string>
     <string name="nav_search">Поиск</string>
     <string name="nav_login">Авторизация</string>
     <string name="nav_logout">Выйти</string>
@@ -33,6 +34,22 @@
     <string name="detail_recipe_ingredients">Ингридиенты</string>
     <string name="detail_recipe_cooking">Приготовление</string>
     <string name="detail_recipe_author">Автор: </string>
+
+    <string name="coming_soon">Coming Soon</string>
+
+    <string name="shutdown">Закрыть приложение</string>
+
+    <string name="chooseCategory">Выберите категорию</string>
+    <string name="chooseSubCategory">Выберите подкатегорию</string>
+    <string name="ingredients">Ингредиенты</string>
+    <string name="ingredient">Ингредиент</string>
+    <string name="count">кол-во</string>
+    <string name="add">Добавить</string>
+    <string name="del">Удалить</string>
+    <string name="step">Пошаговый рецепт приготовления</string>
+    <string name="step1">шаг 1</string>
+    <string name="addRecipe">Добавить рецепт</string>
+
 
     <string-array name="add_recipe_photo_array">
         <item>Камера</item>

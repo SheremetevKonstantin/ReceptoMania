@@ -3,11 +3,13 @@ package com.sheremetev.receptomania;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,13 +19,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sheremetev.receptomania.Model.NullPage;
 
+import org.w3c.dom.Text;
+
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    TextView nav_headerText;
+    boolean isFin = false;
 
     public final static String EXTRA_EMAIL_MESSAGE = "email";
     String email;
@@ -35,11 +45,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(email != null){
             if(email.equals("Гость")){
                 setContentView(R.layout.activity_main_guest);
+                this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }else{
                 setContentView(R.layout.activity_main);
+                this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
         }else{
             setContentView(R.layout.activity_main_guest);
+            this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,7 +72,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NullPage.email = email;
 
-        TextView nav_headerText = (TextView) findViewById(R.id.nav_title);
+        View header = navigationView.getHeaderView(0);
+
+        nav_headerText = (TextView) header.findViewById(R.id.nav_title);
+
+        nav_headerText.setText(NullPage.email);
 
         Fragment fragment = new CategoryFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -67,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.commit();
 
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -77,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(email.equals("Гость")){
             switch(id) {
                 case R.id.nav_login:
+                    NullPage.email = null;
                     intent = new Intent(this, LoginActivity.class);
                     break;
                 case R.id.nav_favorites:
@@ -84,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
                 case R.id.nav_search:
                     fragment = new SearchFragment();
+                    break;
+                case R.id.shutdown:
+                    this.finishAffinity();
+                    System.exit(0);
                     break;
                 default:
                     fragment = new CategoryFragment();
@@ -93,14 +116,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.nav_favorites:
                     fragment = new FavoritesFragment();
                     break;
+                case R.id.nav_profile:
+                    fragment = new ProfileFragment();
+                    break;
+                case R.id.nav_myRecipes:
+                    fragment = new MyRecipesFragment();
+                    break;
                 case R.id.nav_addRecipe:
                     fragment = new AddRecipeFragment();
+                    break;
+                case R.id.shutdown:
+                    this.finishAffinity();
+                    System.exit(0);
                     break;
                 case R.id.nav_search:
                     fragment = new SearchFragment();
                     break;
                 case R.id.nav_logout:
-
+                    NullPage.email = null;
                     ContentValues userValues = new ContentValues();
                     userValues.put("USER_NAME", "user");
                     userValues.put("ISLOGIN", "0");
@@ -151,26 +184,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-   /* @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
-        super.onKeyUp(keyCode, event);
-
-        if(keyCode == KeyEvent.KEYCODE_BACK){
-            new AlertDialog.Builder(this)
-                    .setTitle("Выйти из приложения?")
-                    .setMessage("Вы действительно хотите выйти?")
-                    .setNegativeButton(android.R.string.no, null)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent i = new Intent(Intent.ACTION_MAIN);
-                            i.addCategory(Intent.CATEGORY_HOME);
-                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(i);
-                        }
-                    }).create().show();
-        }
-        return false;
-    }*/
 
 }

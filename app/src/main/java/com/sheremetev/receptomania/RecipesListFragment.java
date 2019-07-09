@@ -59,7 +59,6 @@ public class RecipesListFragment extends Fragment {
         if(bundle != null){
             try {
                 subCatName = bundle.getString("subCatName");
-                Toast.makeText(getContext(),subCatName,Toast.LENGTH_SHORT).show();
                 postDataParams = new JSONObject();
                 postDataParams.put("subCatName", subCatName);
                 postDataParamsString = new PostDataStringer().getPostDataString(postDataParams);

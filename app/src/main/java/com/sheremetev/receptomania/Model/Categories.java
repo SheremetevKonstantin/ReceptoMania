@@ -16,10 +16,10 @@ public class Categories {
             new Categories("Выпечка",R.drawable.category_bakery,"bakery"),
             new Categories("Десерты",R.drawable.category_desserts,"desserts"),
             new Categories("Соусы",R.drawable.category_souses,"souses"),
-            new Categories("Каши",R.drawable.category_porridge,"porridge"),
-            new Categories("Студенческая еда",R.drawable.category_students,"students"),
+            new Categories("Каши",R.drawable.category_porridge,"porridge")
+            /*new Categories("Студенческая еда",R.drawable.category_students,"students"),
             new Categories("Готовим в мультиварке",R.drawable.category_multicooker,"multicooker"),
-            new Categories("Бутерброды",R.drawable.category_sandwich,"sandwich")
+            new Categories("Бутерброды",R.drawable.category_sandwich,"sandwich")*/
     };
     private Categories(String name, int imageResourceId,String catName) {
         this.name = name;
@@ -33,4 +33,5 @@ public class Categories {
         return imageResourceId;
     }
     public String getCatName(){return catName;}
+
 }

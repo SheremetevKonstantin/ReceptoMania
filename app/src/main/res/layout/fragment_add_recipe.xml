@@ -4,11 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fon_clear"
     tools:context=".AddRecipeFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+
     <ImageView
         android:id="@+id/imageRecipe"
         android:layout_width="match_parent"
@@ -21,12 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:inputType="textNoSuggestions"
         android:hint="@string/add_recipe_name"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
-        android:text="Выберите категорию"
+        android:text="@string/chooseCategory"
         android:textSize="20sp"
         android:fontFamily="@font/font3"
         android:textAlignment="center"/>
@@ -39,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
-        android:text="Выберите подкатегорию"
+        android:text="@string/chooseSubCategory"
         android:textSize="20sp"
         android:fontFamily="@font/font3"
         android:textAlignment="center"/>
@@ -52,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
-        android:text="Ингридиенты"
+        android:text="@string/ingredients"
         android:textSize="20sp"
         android:fontFamily="@font/font3"
         android:textAlignment="center"/>
@@ -76,7 +84,7 @@
                 android:maxLength="50"
                 android:layout_height="wrap_content"
                 android:tag="0ingedient"
-                android:hint="Ингридиент"/>
+                android:hint="@string/ingredient"/>
 
             <EditText
                 android:layout_width="0dp"
@@ -85,7 +93,7 @@
                 android:maxLength="10"
                 android:tag="0count"
                 android:inputType="number"
-                android:hint="кол-во"/>
+                android:hint="@string/count"/>
             <Spinner
                 android:layout_width="0dp"
                 android:layout_weight="3"
@@ -118,7 +126,7 @@
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_buttons_style"
-                    android:text="Добавить"
+                    android:text="@string/add"
                     android:id="@+id/btnAddIngredient">
                 </Button>
                 <Button
@@ -126,7 +134,7 @@
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_buttons_style"
-                    android:text="Удалить"
+                    android:text="@string/del"
                     android:id="@+id/btnDelIngredient">
                 </Button>
             </LinearLayout>
@@ -137,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
-                android:text="Пошаговый рецепт приготовления"
+                android:text="@string/step"
                 android:textSize="20sp"
                 android:fontFamily="@font/font3"
                 android:textAlignment="center"/>
@@ -156,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text|textMultiLine"
                     android:tag="0step"
-                    android:hint="шаг 1"/>
+                    android:hint="@string/step1"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -175,7 +183,7 @@
                         android:layout_weight="5"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_buttons_style"
-                        android:text="Добавить"
+                        android:text="@string/add"
                         android:id="@+id/btnAddStep">
                     </Button>
                     <Button
@@ -183,7 +191,7 @@
                         android:layout_weight="5"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_buttons_style"
-                        android:text="Удалить"
+                        android:text="@string/del"
                         android:id="@+id/btnDelStep">
                     </Button>
                 </LinearLayout>
@@ -193,7 +201,17 @@
             android:layout_marginTop="15dp"
             android:layout_height="wrap_content"
             android:background="@drawable/border_buttons_style"
-            android:text="Добавить рецепт"
+            android:text="@string/addRecipe"
             android:id="@+id/btnAddRecipe"/>
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="80dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="45sp"
+        android:layout_height="80dp"/>
+
+    </FrameLayout>
 </android.support.v4.widget.NestedScrollView>

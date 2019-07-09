@@ -140,4 +140,6 @@ public class Subcategories {
             new Subcategories("Салатная заправка",R.drawable.souses_salat,"souses_salat")
     };
 
+
+
 }

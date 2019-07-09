@@ -76,6 +76,7 @@ public class SendPostData extends AsyncTask<String, Void, String>{
         }
         catch(Exception e){
             return "Плохое интернет соединение";
+            //return e.toString();
         }
     }
 
