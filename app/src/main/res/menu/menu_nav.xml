@@ -35,4 +35,14 @@
             android:icon="@drawable/baseline_power_settings_new_black_48"
             android:title="@string/shutdown" />
     </group>
+    <item android:title="@string/copyrightString">
+        <menu>
+            <item
+                android:id="@+id/copyright"
+                android:gravity="bottom"
+                android:checkable="false"
+                android:icon="@drawable/baseline_copyright_black_48"
+                android:title="@string/copyright"/>
+        </menu>
+    </item>
 </menu>

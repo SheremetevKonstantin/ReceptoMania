@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 progressBar.setVisibility(View.GONE);
-                                if(Responce.equals("!success")){
+                                if(!Responce.equals("success")){
                                     Toast.makeText(activity,Responce,Toast.LENGTH_LONG).show();
                                 }else if(Responce.equals("Плохое интернет соединение")){
                                     Toast.makeText(activity,Responce,Toast.LENGTH_LONG).show();

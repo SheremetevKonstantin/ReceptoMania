@@ -3,13 +3,13 @@
 
     <string name="login_Autorization">Авторизация</string>
     <string name="login_Registration">Регистрация</string>
-    <string name="login_BtnLoginName">Почта</string>
+    <string name="login_BtnLoginName">Имя пользователя</string>
     <string name="login_BtnPassword">Пароль</string>
     <string name="login_BtnEnter">Войти</string>
     <string name="login_BtnGuest">Войти как гость</string>
 
     <string name="reg_Registration">Регистрация</string>
-    <string name="reg_BtnLoginName">Почта</string>
+    <string name="reg_BtnLoginName">Имя пользователя</string>
     <string name="reg_BtnPassword">Пароль</string>
     <string name="reg_BtnPasswordRepeat">Повторите пароль</string>
     <string name="reg_Confirm">Я принимаю условия</string>
@@ -48,7 +48,10 @@
     <string name="del">Удалить</string>
     <string name="step">Пошаговый рецепт приготовления</string>
     <string name="step1">шаг 1</string>
+    <string name="justStep">шаг</string>
     <string name="addRecipe">Добавить рецепт</string>
+    <string name="copyright">Шереметьев Константин</string>
+    <string name="copyrightString">copyright</string>
 
 
     <string-array name="add_recipe_photo_array">
@@ -61,6 +64,9 @@
         <item>кг.</item>
         <item>мл.</item>
         <item>л.</item>
+        <item>шт.</item>
+        <item>ч.л.</item>
+        <item>ст.л.</item>
     </string-array>
     <string-array name="category_array">
         <item></item>

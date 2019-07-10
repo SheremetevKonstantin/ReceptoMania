@@ -9,18 +9,18 @@
         android:id="@+id/name0"
         android:layout_width="0dp"
         android:layout_weight="5"
-        android:maxLength="50"
+        android:maxLength="30"
         android:layout_height="wrap_content"
-        android:hint="Ингридиент"/>
+        android:hint="@string/ingredient"/>
 
     <EditText
         android:id="@+id/count0"
         android:layout_width="0dp"
         android:layout_weight="2"
-        android:maxLength="10"
+        android:maxLength="4"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Кол-во"/>
+        android:hint="@string/count"/>
 
     <Spinner
         android:id="@+id/mera0"

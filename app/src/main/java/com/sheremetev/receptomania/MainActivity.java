@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public final static String EXTRA_EMAIL_MESSAGE = "email";
     String email;
+    boolean isCopyRightClick = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,16 +98,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case R.id.nav_login:
                     NullPage.email = null;
                     intent = new Intent(this, LoginActivity.class);
+                    isCopyRightClick = false;
                     break;
                 case R.id.nav_favorites:
                     fragment = new FavoritesFragment();
+                    isCopyRightClick = false;
                     break;
                 case R.id.nav_search:
                     fragment = new SearchFragment();
+                    isCopyRightClick = false;
                     break;
                 case R.id.shutdown:
+                    isCopyRightClick = false;
                     this.finishAffinity();
                     System.exit(0);
+                    break;
+                case R.id.copyright:
+                    isCopyRightClick = true;
                     break;
                 default:
                     fragment = new CategoryFragment();
@@ -115,25 +123,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             switch (id){
                 case R.id.nav_favorites:
                     fragment = new FavoritesFragment();
+                    isCopyRightClick = false;
                     break;
                 case R.id.nav_profile:
                     fragment = new ProfileFragment();
+                    isCopyRightClick = false;
                     break;
                 case R.id.nav_myRecipes:
                     fragment = new MyRecipesFragment();
+                    isCopyRightClick = false;
                     break;
                 case R.id.nav_addRecipe:
                     fragment = new AddRecipeFragment();
+                    isCopyRightClick = false;
                     break;
                 case R.id.shutdown:
+                    isCopyRightClick = false;
                     this.finishAffinity();
                     System.exit(0);
                     break;
                 case R.id.nav_search:
                     fragment = new SearchFragment();
                     break;
+                case R.id.copyright:
+                    isCopyRightClick = true;
+                    break;
                 case R.id.nav_logout:
                     NullPage.email = null;
+                    isCopyRightClick = false;
                     ContentValues userValues = new ContentValues();
                     userValues.put("USER_NAME", "user");
                     userValues.put("ISLOGIN", "0");
@@ -159,14 +176,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         }
-
-        if(fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
-        }else{
-            startActivity(intent);
+        if(!isCopyRightClick){
+            if(fragment != null) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
+            }else{
+                startActivity(intent);
+            }
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

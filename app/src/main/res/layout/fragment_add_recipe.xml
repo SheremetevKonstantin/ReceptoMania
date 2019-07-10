@@ -28,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:maxLength="30"
         android:inputType="textNoSuggestions"
         android:hint="@string/add_recipe_name"/>
     <TextView
@@ -81,7 +82,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_weight="5"
-                android:maxLength="50"
+                android:maxLength="30"
                 android:layout_height="wrap_content"
                 android:tag="0ingedient"
                 android:hint="@string/ingredient"/>
@@ -90,7 +91,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:maxLength="10"
+                android:maxLength="4"
                 android:tag="0count"
                 android:inputType="number"
                 android:hint="@string/count"/>
@@ -163,6 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text|textMultiLine"
+                    android:maxLength="100"
                     android:tag="0step"
                     android:hint="@string/step1"/>
             </LinearLayout>
